@@ -10,6 +10,7 @@ tramp
 
 # Packages installed & byte-compiled by elpa
 elpa/
+eln-cache/
 
 # Graphene's geometry details
 .graphene-geometry
