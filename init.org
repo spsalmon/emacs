@@ -6,12 +6,12 @@ The following variables are used to tweak some of the configuration pieces for u
 
 #+begin_src emacs-lisp
 
-;; NOTE: init.el is now generated from init.org.  Please edit that file
-;;       in Emacs and init.el will be generated automatically!
+  ;; NOTE: init.el is now generated from init.org.  Please edit that file
+  ;;       in Emacs and init.el will be generated automatically!
 
-;; You will most likely need to adjust this font size for your system!
-(defvar efs/default-font-size 140)
-(defvar efs/default-variable-font-size 120)
+  ;; You will most likely need to adjust this font size for your system!
+  (defvar efs/default-font-size 140)
+  (defvar efs/default-variable-font-size 120)
 
 #+end_src
 
@@ -24,7 +24,7 @@ Emacs has a built in package manager but it doesn't make it easy to automaticall
   ;; Initialize package sources
   (require 'package)
 
-  (setq package-archives '(("melpa" . "https://melpa.org/packages/")
+  (setq package-archives '(("melpa" . "https://www.mirrorservice.org/sites/melpa.org/packages/")
                            ("org" . "https://orgmode.org/elpa/")
                            ("elpa" . "https://elpa.gnu.org/packages/")))
 
@@ -75,13 +75,39 @@ This section configures basic UI settings that remove unneeded elements to make 
 
 #+begin_src emacs-lisp
 
-(set-face-attribute 'default nil :font "IBM Plex Mono" :height efs/default-font-size)
+  (set-face-attribute 'default nil :font "IBM Plex Mono" :height efs/default-font-size)
 
-;; Set the fixed pitch face
-(set-face-attribute 'fixed-pitch nil :font "IBM Plex Mono" :height efs/default-font-size)
+  ;; Set the fixed pitch face
+  (set-face-attribute 'fixed-pitch nil :font "IBM Plex Mono" :height efs/default-font-size)
 
-;; Set the variable pitch face
-(set-face-attribute 'variable-pitch nil :font "IBM Plex Mono" :height efs/default-font-size :weight 'regular)
+  ;; Set the variable pitch face
+  (set-face-attribute 'variable-pitch nil :font "IBM Plex Mono" :height efs/default-font-size :weight 'regular)
+
+#+end_src
+
+* Autosave
+
+I really dislike the basic emacs autosave behaviour, so let's make it better.
+
+#+begin_src emacs-lisp
+
+  ;; Put backup files neatly away
+  (let ((backup-dir "~/tmp/emacs/backups")
+        (auto-saves-dir "~/tmp/emacs/auto-saves/"))
+    (dolist (dir (list backup-dir auto-saves-dir))
+      (when (not (file-directory-p dir))
+        (make-directory dir t)))
+    (setq backup-directory-alist `(("." . ,backup-dir))
+          auto-save-file-name-transforms `((".*" ,auto-saves-dir t))
+          auto-save-list-file-prefix (concat auto-saves-dir ".saves-")
+          tramp-backup-directory-alist `((".*" . ,backup-dir))
+          tramp-auto-save-directory auto-saves-dir))
+
+  (setq backup-by-copying t    ; Don't delink hardlinks
+        delete-old-versions t  ; Clean up the backups
+        version-control t      ; Use version numbers on backups,
+        kept-new-versions 5    ; keep some new versions
+        kept-old-versions 2)   ; and some old ones, too
 
 #+end_src
 
@@ -95,8 +121,8 @@ This section configures basic UI settings that remove unneeded elements to make 
 
 #+begin_src emacs-lisp
 
-(use-package doom-themes
-  :init (load-theme 'doom-outrun-electric t))
+  (use-package doom-themes
+    :init (load-theme 'doom-outrun-electric t))
 
 #+end_src
 
@@ -108,11 +134,11 @@ This section configures basic UI settings that remove unneeded elements to make 
 
 #+begin_src emacs-lisp
 
-(use-package all-the-icons)
+  (use-package all-the-icons)
 
-(use-package doom-modeline
-  :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 15)))
+  (use-package doom-modeline
+    :init (doom-modeline-mode 1)
+    :custom ((doom-modeline-height 15)))
 
 #+end_src
 
@@ -122,11 +148,11 @@ This section configures basic UI settings that remove unneeded elements to make 
 
 #+begin_src emacs-lisp
 
-(use-package which-key
-  :init (which-key-mode)
-  :diminish which-key-mode
-  :config
-  (setq which-key-idle-delay 1))
+  (use-package which-key
+    :init (which-key-mode)
+    :diminish which-key-mode
+    :config
+    (setq which-key-idle-delay 1))
 
 #+end_src
 
@@ -137,35 +163,35 @@ This section configures basic UI settings that remove unneeded elements to make 
 [[https://github.com/Yevgnen/ivy-rich][ivy-rich]] adds extra columns to a few of the Counsel commands to provide more information about each item.
 
 #+begin_src emacs-lisp
+  
+  (use-package ivy
+    :diminish
+    :bind (("C-s" . swiper)
+           :map ivy-minibuffer-map
+           ("TAB" . ivy-alt-done)
+           ("C-l" . ivy-alt-done)
+           ("C-j" . ivy-next-line)
+           ("C-k" . ivy-previous-line)
+           :map ivy-switch-buffer-map
+           ("C-k" . ivy-previous-line)
+           ("C-l" . ivy-done)
+           ("C-d" . ivy-switch-buffer-kill)
+           :map ivy-reverse-i-search-map
+           ("C-k" . ivy-previous-line)
+           ("C-d" . ivy-reverse-i-search-kill))
+    :config
+    (ivy-mode 1))
 
-    (use-package ivy
-      :diminish
-      :bind (("C-s" . swiper)
-             :map ivy-minibuffer-map
-             ("TAB" . ivy-alt-done)
-             ("C-l" . ivy-alt-done)
-             ("C-j" . ivy-next-line)
-             ("C-k" . ivy-previous-line)
-             :map ivy-switch-buffer-map
-             ("C-k" . ivy-previous-line)
-             ("C-l" . ivy-done)
-             ("C-d" . ivy-switch-buffer-kill)
-             :map ivy-reverse-i-search-map
-             ("C-k" . ivy-previous-line)
-             ("C-d" . ivy-reverse-i-search-kill))
-      :config
-      (ivy-mode 1))
+  (use-package ivy-rich
+    :init
+    (ivy-rich-mode 1))
 
-    (use-package ivy-rich
-      :init
-      (ivy-rich-mode 1))
-
-    (use-package counsel
-      :bind (("C-M-j" . 'counsel-switch-buffer)
-             :map minibuffer-local-map
-             ("C-r" . 'counsel-minibuffer-history))
-      :config
-      (counsel-mode 1))
+  (use-package counsel
+    :bind (("C-M-j" . 'counsel-switch-buffer)
+           :map minibuffer-local-map
+           ("C-r" . 'counsel-minibuffer-history))
+    :config
+    (counsel-mode 1))
 
 #+end_src
 
@@ -192,7 +218,7 @@ This section configures basic UI settings that remove unneeded elements to make 
 This is an example of using [[https://github.com/abo-abo/hydra][Hydra]] to design a transient key binding for quickly adjusting the scale of the text on screen.  We define a hydra that is bound to =C-s t s= and, once activated, =j= and =k= increase and decrease the text scale.  You can press any other key (or =f= specifically) to exit the transient key map.
 
 #+begin_src emacs-lisp
-
+  
   (use-package hydra)
 
   (defhydra hydra-text-scale (:timeout 4)
@@ -211,7 +237,7 @@ This is an example of using [[https://github.com/abo-abo/hydra][Hydra]] to desig
 The =efs/org-font-setup= function configures various text faces to tweak the sizes of headings and use variable width fonts in most cases so that it looks more like we're editing a document in =org-mode=.  We switch back to fixed width (monospace) fonts for code blocks and tables so that they display correctly.
 
 #+begin_src emacs-lisp
-
+  
   (defun efs/org-font-setup ()
     ;; Replace list hyphen with dot
     (font-lock-add-keywords 'org-mode
@@ -245,7 +271,7 @@ The =efs/org-font-setup= function configures various text faces to tweak the siz
 This section contains the basic configuration for =org-mode= plus the configuration for Org agendas and capture templates.  There's a lot to unpack in here so I'd recommend watching the videos for [[https://youtu.be/VcgjTEa0kU4][Part 5]] and [[https://youtu.be/PNE-mgkZ6HM][Part 6]] for a full explanation.
 
 #+begin_src emacs-lisp
-
+  
   (defun efs/org-mode-setup ()
     (org-indent-mode)
     (variable-pitch-mode 1)
@@ -422,11 +448,11 @@ To execute or export code in =org-mode= code blocks, you'll need to set up =org-
 
 ** Auto-tangle Configuration Files
 
-This snippet adds a hook to =org-mode= buffers so that =efs/org-babel-tangle-config= gets executed each time such a buffer gets saved.  This function checks to see if the file being saved is the Emacs.org file you're looking at right now, and if so, automatically exports the configuration here to the associated output files.
+This snippet adds a hook to =org-mode= buffers so that =efs/org-babel-tangle-config= gets executed each time such a buffer gets saved.  This function checks to see if the file being saved is the init.org file you're looking at right now, and if so, automatically exports the configuration here to the associated output files.
 
 #+begin_src emacs-lisp
 
-  ;; Automatically tangle our Emacs.org config file when we save it
+  ;; Automatically tangle our init.org config file when we save it
   (defun efs/org-babel-tangle-config ()
     (when (string-equal (buffer-file-name)
                         (expand-file-name "~/.emacs.d/init.org"))
@@ -577,8 +603,8 @@ We also use [[https://github.com/sebastiencs/company-box][company-box]] to furth
     ("C-c p" . projectile-command-map)
     :init
     ;; NOTE: Set this to the folder where you keep your Git repos!
-    (when (file-directory-p "~/Projects/Code")
-      (setq projectile-project-search-path '("~/Projects/Code")))
+    (when (file-directory-p "~/code")
+      (setq projectile-project-search-path '("~/code")))
     (setq projectile-switch-project-action #'projectile-dired))
 
   (use-package counsel-projectile

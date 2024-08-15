@@ -44,3 +44,7 @@ url/
 
 # Flycheck
 flycheck_*
+
+.lsp*
+projectile*
+transient/
