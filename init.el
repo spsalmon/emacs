@@ -71,6 +71,9 @@
       kept-new-versions 5    ; keep some new versions
       kept-old-versions 2)   ; and some old ones, too
 
+(auto-save-visited-mode)
+(setq auto-save-visited-interval 3)
+
 (use-package doom-themes
   :init (load-theme 'doom-outrun-electric t))
 
