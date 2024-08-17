@@ -74,7 +74,7 @@
 (auto-save-visited-mode)
 (setq auto-save-visited-interval 3)
 
-(use-package general
+(use-package general)
 
 (use-package doom-themes
   :init (load-theme 'doom-outrun-electric t))

@@ -126,7 +126,7 @@ The general package allows for easy keybindings configurations.
 
 #+begin_src emacs-lisp
 
-  (use-package general
+  (use-package general)
     
 #+end_src
 
