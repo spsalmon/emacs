@@ -8,7 +8,6 @@ The following variables are used to tweak some of the configuration pieces for u
 
   ;; NOTE: init.el is now generated from init.org.  Please edit that file
   ;;       in Emacs and init.el will be generated automatically!
-
   ;; You will most likely need to adjust this font size for your system!
   (defvar efs/default-font-size 140)
   (defvar efs/default-variable-font-size 120)
@@ -24,7 +23,7 @@ Emacs has a built in package manager but it doesn't make it easy to automaticall
   ;; Initialize package sources
   (require 'package)
 
-  (setq package-archives '(("melpa" . "https://www.mirrorservice.org/sites/melpa.org/packages/")
+  (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                            ("org" . "https://orgmode.org/elpa/")
                            ("elpa" . "https://elpa.gnu.org/packages/")))
 

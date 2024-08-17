@@ -1,6 +1,5 @@
 ;; NOTE: init.el is now generated from init.org.  Please edit that file
 ;;       in Emacs and init.el will be generated automatically!
-
 ;; You will most likely need to adjust this font size for your system!
 (defvar efs/default-font-size 140)
 (defvar efs/default-variable-font-size 120)
@@ -8,7 +7,7 @@
 ;; Initialize package sources
 (require 'package)
 
-(setq package-archives '(("melpa" . "https://www.mirrorservice.org/sites/melpa.org/packages/")
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("org" . "https://orgmode.org/elpa/")
                          ("elpa" . "https://elpa.gnu.org/packages/")))
 
@@ -419,7 +418,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(general which-key visual-fill-column typescript-mode rainbow-delimiters python-mode org-bullets lsp-ui lsp-ivy ivy-rich helpful forge doom-themes doom-modeline dap-mode counsel-projectile company-box all-the-icons)))
+   '(dap-mode lsp-ivy lsp-treemacs lsp-ui lsp-mode which-key visual-fill-column spinner rainbow-delimiters python-mode org-bullets ivy-rich hydra ht helpful general forge doom-themes doom-modeline counsel-projectile company-box command-log-mode all-the-icons)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
