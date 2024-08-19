@@ -121,6 +121,8 @@ This sets up proper autosave, reducing my need spam save manually.
 
 * Keybinding Configuration
 
+** General
+
 The general package allows for easy keybindings configurations.
 
 #+begin_src emacs-lisp
@@ -492,7 +494,7 @@ We use the excellent [[https://emacs-lsp.github.io/lsp-mode/][lsp-mode]] to enab
 
 The =lsp-keymap-prefix= setting enables you to define a prefix for where =lsp-mode='s default keybindings will be added.  I *highly recommend* using the prefix to find out what you can do with =lsp-mode= in a buffer.
 
-The =which-key= integration adds helpful descriptions of the various keys so you should be able to learn a lot just by pressing =C-c l= in a =lsp-mode= buffer and trying different things that you find there.
+The =which-key= integration adds helpful descriptions of the various keys so you should be able to learn a lot just by pressing =C-l= in a =lsp-mode= buffer and trying different things that you find there.
 
 #+begin_src emacs-lisp
 
@@ -504,7 +506,7 @@ The =which-key= integration adds helpful descriptions of the various keys so you
     :commands (lsp lsp-deferred)
     :hook (lsp-mode . efs/lsp-mode-setup)
     :init
-    (setq lsp-keymap-prefix "C-l")  ;; Or 'C-l', 's-l'
+    (setq lsp-keymap-prefix "C-l")
     :config
     (lsp-enable-which-key-integration t))
 
@@ -539,6 +541,15 @@ This package is built on the [[https://github.com/Alexander-Miller/treemacs][tre
 
   (use-package lsp-treemacs
     :after lsp)
+
+#+end_src
+
+Some more keybindings for treemacs
+
+#+begin_src emacs-lisp
+
+  (use-package treemacs
+    :bind (("C-<tab>" . treemacs))
 
 #+end_src
 
@@ -584,7 +595,7 @@ Try these commands with =M-x=:
 #+end_src 
 *** Python
 
-The following provides language server support for Python using pylsp. I'm still unsure of how to make this work both on my Debian WSL and my NixOS machines.
+The following provides language server support for Python using pylsp. Make sure that it is installed on the system.
 
 #+begin_src emacs-lisp
 
@@ -600,6 +611,9 @@ The following provides language server support for Python using pylsp. I'm still
     (require 'dap-python))
 
 #+end_src
+*** Nix
+This will activate [[https://github.com/NixOS/nix-mode][nix-mode]] for all .nix files
+The following provides language server support for Nix using nil. Make sure that it is installed on the system.
 
 ** Company Mode
 

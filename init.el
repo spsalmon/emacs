@@ -329,7 +329,7 @@
   :commands (lsp lsp-deferred)
   :hook (lsp-mode . efs/lsp-mode-setup)
   :init
-  (setq lsp-keymap-prefix "C-l")  ;; Or 'C-l', 's-l'
+  (setq lsp-keymap-prefix "C-l")
   :config
   (lsp-enable-which-key-integration t))
 
@@ -340,6 +340,9 @@
 
 (use-package lsp-treemacs
   :after lsp)
+
+(use-package treemacs
+  :bind (("C-<tab>" . treemacs))
 
 (use-package lsp-ivy)
 
@@ -412,16 +415,3 @@
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(dap-mode lsp-ivy lsp-treemacs lsp-ui lsp-mode which-key visual-fill-column spinner rainbow-delimiters python-mode org-bullets ivy-rich hydra ht helpful general forge doom-themes doom-modeline counsel-projectile company-box command-log-mode all-the-icons)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
