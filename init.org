@@ -618,7 +618,6 @@ This will activate [[https://github.com/NixOS/nix-mode][nix-mode]] for all .nix 
 #+begin_src emacs-lisp
 
   (use-package nix-mode
-    :mode "\\.nix\\"
     :hook (nix-mode . lsp-deferred)
     )
 
