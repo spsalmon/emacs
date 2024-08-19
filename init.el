@@ -342,7 +342,7 @@
   :after lsp)
 
 (use-package treemacs
-  :bind (("C-<tab>" . treemacs))
+  :bind (("C-<tab>" . treemacs)))
 
 (use-package lsp-ivy)
 

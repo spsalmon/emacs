@@ -549,7 +549,7 @@ Some more keybindings for treemacs
 #+begin_src emacs-lisp
 
   (use-package treemacs
-    :bind (("C-<tab>" . treemacs))
+    :bind (("C-<tab>" . treemacs)))
 
 #+end_src
 
