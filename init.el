@@ -41,7 +41,8 @@
 (dolist (mode '(org-mode-hook
                 term-mode-hook
                 shell-mode-hook
-                eshell-mode-hook))
+                eshell-mode-hook
+                treemacs-mode))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 (set-face-attribute 'default nil :font "IBM Plex Mono" :height efs/default-font-size)
@@ -374,6 +375,11 @@
   (dap-python-debugger 'debugpy)
   :config
   (require 'dap-python))
+
+(use-package nix-mode
+  :mode "\\.nix\\"
+  :hook (nix-mode . lsp-deferred)
+  )
 
 (use-package company
   :after lsp-mode
