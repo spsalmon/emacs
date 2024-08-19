@@ -623,7 +623,6 @@ This will activate [[https://github.com/NixOS/nix-mode][nix-mode]] for all .nix 
     )
 
 #+end_src
-The following provides language server support for Nix using nil. Make sure that it is installed on the system.
 
 ** Company Mode
 
