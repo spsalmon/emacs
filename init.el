@@ -42,7 +42,7 @@
                 term-mode-hook
                 shell-mode-hook
                 eshell-mode-hook
-                treemacs-mode))
+		treemacs-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 (set-face-attribute 'default nil :font "IBM Plex Mono" :height efs/default-font-size)
@@ -377,7 +377,6 @@
   (require 'dap-python))
 
 (use-package nix-mode
-  :mode "\\.nix\\"
   :hook (nix-mode . lsp-deferred)
   )
 
