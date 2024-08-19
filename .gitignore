@@ -48,3 +48,4 @@ flycheck_*
 .lsp*
 projectile*
 transient/
+.cache/
