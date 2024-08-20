@@ -713,3 +713,13 @@ We also use [[https://github.com/sebastiencs/company-box][company-box]] to furth
       (require 'smartparens-config))
   
 #+end_src
+
+* TRAMP
+
+I need TRAMP to work really well as I mostly work directly on the university cluster. For that, I need the remote shell to evaluate my shell profile (to setup the PATH correctly).
+
+#+begin_src emacs-lisp
+
+  (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+
+#+end_src

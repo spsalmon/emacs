@@ -428,16 +428,5 @@
     :config
     ;; load default config
     (require 'smartparens-config))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(smartparens which-key visual-fill-column rainbow-delimiters python-mode org-bullets nix-mode lsp-ui lsp-ivy ivy-rich helpful general forge doom-themes doom-modeline dap-mode counsel-projectile company-box all-the-icons)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+(add-to-list 'tramp-remote-path 'tramp-own-remote-path)
