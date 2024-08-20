@@ -49,3 +49,6 @@ flycheck_*
 projectile*
 transient/
 .cache/
+.extension/
+.lsp-session*
+tramp
