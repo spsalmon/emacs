@@ -716,10 +716,15 @@ We also use [[https://github.com/sebastiencs/company-box][company-box]] to furth
 
 * TRAMP
 
-I need TRAMP to work really well as I mostly work directly on the university cluster. For that, I need the remote shell to evaluate my shell profile (to setup the PATH correctly).
+I need TRAMP to work really well as I mostly work directly on the university cluster. For that, I need to add some more folders to the PATH (LSP ones for example).
 
 #+begin_src emacs-lisp
 
-  (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+  (connection-local-set-profile-variables 'remote-path-with-local-bin
+    '((tramp-remote-path . ("~/.local/bin" tramp-default-remote-path))))
+
+
+  (connection-local-set-profiles
+    '(:application tramp :machine "izblisbon.unibe.ch") 'remote-path-with-local-bin)
 
 #+end_src

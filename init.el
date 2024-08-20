@@ -429,4 +429,9 @@
     ;; load default config
     (require 'smartparens-config))
 
-(add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+(connection-local-set-profile-variables 'remote-path-with-local-bin
+  '((tramp-remote-path . ("~/.local/bin" tramp-default-remote-path))))
+
+
+(connection-local-set-profiles
+  '(:application tramp :machine "izblisbon.unibe.ch") 'remote-path-with-local-bin)
