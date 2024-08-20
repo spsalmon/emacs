@@ -699,3 +699,17 @@ We also use [[https://github.com/sebastiencs/company-box][company-box]] to furth
 
 #+end_src
 
+** Smartparens
+
+[[https://github.com/Fuco1/smartparens][smartparens]] is awesome for handling parens pair automatically
+
+#+begin_src emacs-lisp
+
+  (use-package smartparens
+      :ensure smartparens  ;; install the package
+      :hook (prog-mode text-mode markdown-mode org-mode) ;; add `smartparens-mode` to these hooks
+      :config
+      ;; load default config
+      (require 'smartparens-config))
+  
+#+end_src
