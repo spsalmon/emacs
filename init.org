@@ -456,12 +456,12 @@ To execute or export code in =org-mode= code blocks, you'll need to set up =org-
 
 #+begin_src emacs-lisp
 
-  (org-babel-do-load-languages
-    'org-babel-load-languages
-    '((emacs-lisp . t)
-      (python . t)))
+    (org-babel-do-load-languages
+      'org-babel-load-languages
+      '((emacs-lisp . t)
+        (python . t)))
 
-  (push '("conf-unix" . conf-unix) org-src-lang-modes)
+    (push '("conf-unix" . conf-unix) org-src-lang-modes)
 
 #+end_src
 
@@ -612,6 +612,17 @@ The following provides language server support for Python using pylsp. Make sure
     (require 'dap-python))
 
 #+end_src
+
+**** Micromamba
+
+I mainly use micromamba to manage my Python environments using [[https://github.com/SqrtMinusOne/micromamba.el][emacs-micromamba]] allows to get support within emacs.
+
+#+begin_src emacs-lisp
+
+  (use-package micromamba)
+
+#+end_src
+
 *** Nix
 This will activate [[https://github.com/NixOS/nix-mode][nix-mode]] for all .nix files
 
@@ -623,7 +634,30 @@ This will activate [[https://github.com/NixOS/nix-mode][nix-mode]] for all .nix 
     )
 
 #+end_src
+** Jupyter
 
+This automatically convert notebooks to org files so they're easier to edit.
+
+#+begin_src emacs-lisp
+
+  (setq code-cells-convert-ipynb-style '(
+          ("pandoc" "--to" "ipynb" "--from" "org")
+          ("pandoc" "--to" "org" "--from" "ipynb")
+          org-mode))
+  
+#+end_src
+
+We need to install the [[https://github.com/emacs-jupyter/jupyter][emacs-jupyter]] package to interact with the running Jupyter kernel.
+
+#+begin_src emacs-lisp
+
+  (use-package jupyter)
+
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((jupyter . t)))
+  
+#+end_src
 ** Company Mode
 
 [[http://company-mode.github.io/][Company Mode]] provides a nicer in-buffer completion interface than =completion-at-point= which is more reminiscent of what you would expect from an IDE.  We add a simple configuration to make the keybindings a little more useful (=TAB= now completes the selection and initiates completion at the current location if needed).

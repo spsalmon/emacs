@@ -376,10 +376,23 @@
   :config
   (require 'dap-python))
 
+(use-package micromamba)
+
 (use-package nix-mode
   :mode "\\.nix\\'"
   :hook (nix-mode . lsp-deferred)
   )
+
+(setq code-cells-convert-ipynb-style '(
+        ("pandoc" "--to" "ipynb" "--from" "org")
+        ("pandoc" "--to" "org" "--from" "ipynb")
+        org-mode))
+
+(use-package jupyter)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((jupyter . t)))
 
 (use-package company
   :after lsp-mode
@@ -435,3 +448,16 @@
 
 (connection-local-set-profiles
   '(:application tramp :machine "izblisbon.unibe.ch") 'remote-path-with-local-bin)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(micromamba which-key visual-fill-column smartparens rainbow-delimiters python-mode org-bullets nix-mode lsp-ui lsp-ivy jupyter ivy-rich helpful general forge doom-themes doom-modeline dap-mode counsel-projectile company-box all-the-icons)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
