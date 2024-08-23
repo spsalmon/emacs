@@ -448,3 +448,16 @@
 
 (connection-local-set-profiles
   '(:application tramp :machine "izblisbon.unibe.ch") 'remote-path-with-local-bin)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(smartparens rainbow-delimiters forge magit counsel-projectile projectile company-box company jupyter nix-mode micromamba python-mode dap-mode lsp-ivy lsp-treemacs lsp-ui lsp-mode visual-fill-column org-bullets hydra helpful counsel ivy-rich ivy which-key doom-modeline all-the-icons doom-themes general)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
