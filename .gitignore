@@ -52,3 +52,5 @@ transient/
 .extension/
 .lsp-session*
 tramp
+.dap*
+init.el
