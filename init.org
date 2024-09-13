@@ -290,7 +290,7 @@ The =efs/org-font-setup= function configures various text faces to tweak the siz
 This section contains the basic configuration for =org-mode= plus the configuration for Org agendas and capture templates.  There's a lot to unpack in here so I'd recommend watching the videos for [[https://youtu.be/VcgjTEa0kU4][Part 5]] and [[https://youtu.be/PNE-mgkZ6HM][Part 6]] for a full explanation.
 
 #+begin_src emacs-lisp
-  
+
   (defun efs/org-mode-setup ()
     (org-indent-mode)
     (variable-pitch-mode 1)
@@ -418,6 +418,8 @@ This section contains the basic configuration for =org-mode= plus the configurat
 
     (efs/org-font-setup))
 
+  ; inline images by default
+  (setq org-startup-with-inline-images t)
 #+end_src
 
 *** Nicer Heading Bullets
