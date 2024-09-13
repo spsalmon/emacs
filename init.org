@@ -418,8 +418,6 @@ This section contains the basic configuration for =org-mode= plus the configurat
 
     (efs/org-font-setup))
 
-  ; inline images by default
-  (setq org-startup-with-inline-images t)
 #+end_src
 
 *** Nicer Heading Bullets
@@ -452,6 +450,18 @@ We use [[https://github.com/joostkremers/visual-fill-column][visual-fill-column]
 
 #+end_src
 
+*** Images
+#+begin_src emacs-lisp
+
+  ; inline images by default
+  (setq org-startup-with-inline-images t)
+  
+  ; install org-download
+  (use-package org-download)
+  ;; Drag-and-drop to `dired`
+  (add-hook 'dired-mode-hook 'org-download-enable)
+
+#+end_src
 ** Configure Babel Languages
 
 To execute or export code in =org-mode= code blocks, you'll need to set up =org-babel-load-languages= for each language you'd like to use.  [[https://orgmode.org/worg/org-contrib/babel/languages.html][This page]] documents all of the languages that you can use with =org-babel=.
